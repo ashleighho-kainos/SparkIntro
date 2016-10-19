@@ -3,6 +3,7 @@
 import org.apache.spark.SparkContext
 import org.apache.spark.SparkConf
 import org.apache.spark.sql.SparkSession
+import org.apache.spark.sql._
 
 
 object SparkIntroApp {
@@ -11,6 +12,8 @@ object SparkIntroApp {
       .setMaster("local")
     val sc = new SparkContext(conf)
     val sparkSession = SparkSession.builder.config(conf).getOrCreate()
+
+    val sqlContext = new org.apache.spark.sql.hive.HiveContext(sc)
 
     //// this is the test bit that we can remove
     val logFile = "README.md" // Should be some file on your system
